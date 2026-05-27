@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H&L Automotriz – Taller Mecánico en Pirque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5A623;
+    --gold-dark: #C4841A;
+    --black: #0e0e0e;
+    --dark: #1a1a1a;
+    --dark2: #242424;
+    --white: #f5f5f0;
+    --muted: #888;
+    --green: #25D366;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(14,14,14,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #2a2a2a;
+    padding: 0 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 5vw 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #222;
+  }
+  .hero::before {
+    content: 'H&L';
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28vw;
+    color: rgba(245,166,35,0.04);
+    pointer-events: none;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 110px);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    max-width: 820px;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 500px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-wa:hover { opacity: 0.9; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--white);
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #222;
+    flex-wrap: wrap;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* DPF BANNER — el plus */
+  .dpf-banner {
+    background: var(--gold);
+    padding: 28px 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .dpf-left { display: flex; align-items: center; gap: 18px; }
+  .dpf-icon {
+    width: 54px;
+    height: 54px;
+    background: var(--black);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .dpf-icon svg { width: 28px; height: 28px; fill: none; stroke: var(--gold); stroke-width: 1.8; }
+  .dpf-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--black);
+    letter-spacing: 1px;
+  }
+  .dpf-text p { font-size: 13px; color: rgba(0,0,0,0.65); margin-top: 2px; }
+  .dpf-badge {
+    background: var(--black);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 6px;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+
+  /* SERVICES */
+  .section { padding: 80px 5vw; }
+  .section-header { margin-bottom: 48px; }
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: 1px;
+    line-height: 1;
+    color: var(--white);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: #222;
+    border: 1px solid #222;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .svc {
+    background: var(--dark);
+    padding: 32px 28px;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .svc:hover { background: var(--dark2); }
+  .svc.featured { background: var(--dark2); }
+  .svc.featured::before {
+    content: 'Nuestro plus';
+    position: absolute;
+    top: 14px; right: 14px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    background: rgba(245,166,35,0.12);
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(245,166,35,0.3);
+  }
+  .svc-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    color: #333;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .svc-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(245,166,35,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .svc-icon-wrap svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+  .svc h3 {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .svc p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .svc-price {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* WHY */
+  .why-section { background: var(--dark); border-top: 1px solid #222; border-bottom: 1px solid #222; }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .why-col { padding: 64px 5vw; }
+  .why-col:first-child { border-right: 1px solid #222; }
+  .why-col h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .why-col h2 span { color: var(--gold); }
+  .why-col p { color: var(--muted); font-size: 15px; font-weight: 300; line-height: 1.75; margin-bottom: 28px; }
+  .pill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    font-size: 12px;
+    color: var(--muted);
+    border: 1px solid #333;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .pill:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 80px 5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .contact-left h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .contact-left h2 span { color: var(--gold); }
+  .contact-left p { color: var(--muted); font-size: 15px; margin-bottom: 32px; font-weight: 300; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid #222;
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .ci-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(245,166,35,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ci-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+  .ci-label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+  .ci-val { font-size: 15px; color: var(--white); font-weight: 400; margin-top: 2px; }
+  .contact-right {
+    background: var(--dark);
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 36px;
+  }
+  .contact-right h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .contact-right p { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; display: block; margin-bottom: 6px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: #111;
+    border: 1px solid #333;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: #111; }
+  .btn-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--gold-dark); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid #222;
+    padding: 32px 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: 12px; color: var(--muted); }
+  .footer-social { display: flex; gap: 12px; }
+  .footer-social a {
+    width: 36px; height: 36px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 15px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* FLOAT WA */
+  .float-wa {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--green);
+    color: #fff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    z-index: 999;
+    transition: transform 0.2s;
+  }
+  .float-wa:hover { transform: scale(1.08); }
+  .float-wa svg { width: 26px; height: 26px; fill: #fff; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .why-grid, .contact-section { grid-template-columns: 1fr; }
+    .why-col:first-child { border-right: none; border-bottom: 1px solid #222; }
+    .hero-stats { gap: 24px; }
+    .dpf-banner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">H<span>&</span>L Automotriz</div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#dpf">Regeneración DPF</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/56966513682" class="nav-cta" target="_blank">Cotizar ahora</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Pirque, Región Metropolitana</div>
+  <h1>Tu auto<br>en <em>buenas</em><br>manos.</h1>
+  <p class="hero-sub">Diagnóstico profesional, reparaciones diesel y a bencina, escáner y regeneración de DPF — en taller o donde estés.</p>
+  <div class="hero-btns">
+    <a href="https://wa.me/56966513682" class="btn-wa" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.073.528 4.02 1.456 5.717L.057 23.882l6.277-1.375A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.647-.49-5.178-1.35l-.369-.217-3.727.816.85-3.63-.243-.388A9.98 9.98 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+    <a href="#servicios" class="btn-ghost">Ver servicios</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">+5</div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div>
+      <div class="stat-num">DPF</div>
+      <div class="stat-label">Regeneración especializada</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Presupuesto previo</div>
+    </div>
+    <div>
+      <div class="stat-num">2x1</div>
+      <div class="stat-label">Taller + servicio domicilio</div>
+    </div>
+  </div>
+</section>
+
+<!-- DPF BANNER -->
+<div class="dpf-banner" id="dpf">
+  <div class="dpf-left">
+    <div class="dpf-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke-linecap="round"/><path d="M8 12h8M12 8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="dpf-text">
+      <h3>Regeneración de Filtro DPF — Nuestro plus</h3>
+      <p>Limpieza y regeneración profesional del filtro de partículas diésel. Evita cambios costosos, recupera rendimiento y reduce humo negro.</p>
+    </div>
+  </div>
+  <span class="dpf-badge">Servicio especializado diésel</span>
+</div>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="section-header">
+    <p class="section-eyebrow">Lo que hacemos</p>
+    <h2 class="section-title">Servicios</h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="svc featured">
+      <div class="svc-num">01</div>
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Regeneración DPF</h3>
+      <p>Limpieza y regeneración forzada del filtro de partículas diésel. Sin necesidad de reemplazo en la mayoría de los casos. Recupera potencia y elimina el humo negro.</p>
+      <div class="svc-price">Cotización personalizada · Consultar</div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke-linecap="round"/><line x1="12" y1="12" x2="12" y2="16" stroke-linecap="round"/><line x1="10" y1="14" x2="14" y2="14" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Escáner automotriz</h3>
+      <p>Diagnóstico OBD profesional con <strong style="color:var(--gold)">equipo Launch</strong> — lectura y borrado de códigos de falla en motor, transmisión, ABS, airbag y más. En taller o a domicilio.</p>
+      <div class="svc-price">Desde $30.000</div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Reparaciones generales</h3>
+      <p>Motor, frenos, embrague, suspensión, dirección y sistema de enfriamiento. Diésel y bencina. Presupuesto previo sin compromiso.</p>
+      <div class="svc-price">Cotización gratis</div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">04</div>
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9 22 9 12 15 12 15 22" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Servicio a domicilio</h3>
+      <p>Escáner y diagnóstico donde estés en Pirque y alrededores. Ideal cuando tu auto no puede moverse o quieres comodidad total.</p>
+      <div class="svc-price">+ Arancel por distancia</div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">05</div>
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Asesoría de compra</h3>
+      <p>¿Vas a comprar un auto usado? Te hacemos una revisión técnica completa antes de que firmes. Escáner incluido.</p>
+      <div class="svc-price">Consultar valor</div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">06</div>
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Mantención Integral 360° — 10.000 km</h3>
+      <p>Paquete completo: aceite premium Total 5W-30, kit 3 filtros (aceite + aire + polen), revisión tren delantero, amortiguadores, frenos, escáner Launch e informe digital a tu WhatsApp.</p>
+      <div class="svc-price" style="font-size:15px;">Vehículos ligeros / sedán <span style="font-size:18px;font-family:'Bebas Neue',sans-serif;letter-spacing:1px;margin-left:6px;">$160.000</span></div>
+      <div class="svc-price" style="margin-top:4px;">Pickups y SUV grandes <span style="font-size:15px;font-family:'Bebas Neue',sans-serif;letter-spacing:1px;margin-left:6px;">$195.000</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-section" id="nosotros">
+  <div class="why-grid">
+    <div class="why-col">
+      <p class="section-eyebrow">¿Por qué elegirnos?</p>
+      <h2>Mecánica<br><span>honesta</span><br>y cercana.</h2>
+      <p>Somos un taller familiar en Pirque con años de experiencia. Nos especializamos en motores diésel y regeneración DPF, pero atendemos cualquier marca y modelo con el mismo nivel de dedicación.</p>
+      <p>Cada trabajo incluye presupuesto previo sin sorpresas, garantía en mano de obra y repuestos de calidad comprobada.</p>
+    </div>
+    <div class="why-col">
+      <p class="section-eyebrow" style="margin-bottom: 24px;">Lo que nos distingue</p>
+      <div class="pill-list">
+        <span class="pill">Especialistas en diésel</span>
+        <span class="pill">Regeneración DPF</span>
+        <span class="pill">Escáner profesional</span>
+        <span class="pill">Servicio a domicilio</span>
+        <span class="pill">Presupuesto previo</span>
+        <span class="pill">Taller familiar Pirque</span>
+        <span class="pill">Respuesta el mismo día</span>
+        <span class="pill">Garantía en trabajos</span>
+        <span class="pill">Asesoría de compra</span>
+        <span class="pill">Sin cobros ocultos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-section">
+    <div class="contact-left">
+      <p class="section-eyebrow">Hablemos</p>
+      <h2>¿Cuándo<br>llevamos tu<br><span>auto?</span></h2>
+      <p>Escríbenos por WhatsApp o déjanos tus datos y te contactamos. Respondemos el mismo día.</p>
+
+      <div class="contact-item">
+        <div class="ci-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="ci-label">WhatsApp</div>
+          <div class="ci-val">+56 9 6651 3682</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="ci-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div>
+          <div class="ci-label">Instagram</div>
+          <div class="ci-val">@hylautomotriz</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="ci-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="ci-label">Ubicación</div>
+          <div class="ci-val">Pirque, Región Metropolitana</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="ci-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="ci-label">Horario</div>
+          <div class="ci-val">Lunes a viernes 09:00–19:00 · Sábado 09:00–17:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <h3>Solicitar cotización</h3>
+      <p>Te respondemos en menos de 1 hora en horario hábil.</p>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label>Teléfono / WhatsApp</label>
+        <input type="tel" placeholder="+56 9 ...">
+      </div>
+      <div class="form-group">
+        <label>Servicio que necesitas</label>
+        <select>
+          <option value="">Selecciona un servicio</option>
+          <option>Regeneración DPF</option>
+          <option>Escáner automotriz</option>
+          <option>Reparación general</option>
+          <option>Servicio a domicilio</option>
+          <option>Asesoría de compra</option>
+          <option>Mantención Integral 360° (10K)</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Marca y modelo del vehículo</label>
+        <input type="text" placeholder="Ej: Toyota Hilux 2.5 diésel">
+      </div>
+      <div class="form-group">
+        <label>Mensaje (opcional)</label>
+        <textarea rows="3" placeholder="Cuéntanos el problema o la falla..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="window.open('https://wa.me/56966513682?text=Hola!%20Quiero%20cotizar%20un%20servicio%20en%20H%26L%20Automotriz.','_blank')">Enviar por WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">H<span>&</span>L Automotriz</div>
+    <p style="margin-top:6px;">© 2026 · Pirque, Región Metropolitana</p>
+  </div>
+  <div class="footer-social">
+    <a href="https://wa.me/56966513682" target="_blank" title="WhatsApp">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.073.528 4.02 1.456 5.717L.057 23.882l6.277-1.375A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.647-.49-5.178-1.35l-.369-.217-3.727.816.85-3.63-.243-.388A9.98 9.98 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    </a>
+    <a href="https://instagram.com/hylautomotriz" target="_blank" title="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+    </a>
+  </div>
+</footer>
+
+<!-- BOTÓN FLOTANTE WA -->
+<a href="https://wa.me/56966513682" class="float-wa" target="_blank" title="WhatsApp H&L Automotriz">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.073.528 4.02 1.456 5.717L.057 23.882l6.277-1.375A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.647-.49-5.178-1.35l-.369-.217-3.727.816.85-3.63-.243-.388A9.98 9.98 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+</body>
+</html>
